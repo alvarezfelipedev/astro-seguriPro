@@ -1,0 +1,56 @@
+---
+const titulo = "Este es un titulo hecho con una variable de JS";
+const color = "danger";
+const color2 = "warning";
+const hobbies = ["Leer", "Correr", "Caminar", "Jugar"];
+const isActive = false;
+
+import Layout from "../components/Layout.astro";
+import Button from "../components/ButtonSuscribe";
+---
+
+<Layout pageTitle="pagina principal" pageDescription="Esta es la pagina principal">
+  <h1 class="title">{titulo}</h1>
+  <h2 class={color}>Rojo</h2>
+  <h4 class="hobbies">{hobbies}</h4>
+  <ul>
+    {
+      hobbies.map((hobby) => (
+        <li>
+          <h3 class={color2}>{hobby}</h3>
+          <button>Like</button>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h3 class="danger">
+    {!isActive && "El usuario está activo"}
+  </h3>
+
+  <!-- el componente carga, cuando el cliente accede a la pag. = client:load -->
+  <!-- el componente se muestra cuando el cliente llegue al lugar en el q' se deba mostrar = client:visible -->
+  <Button client:visible/>
+
+  <script>
+    console.log("Este es un mensaje por consola");
+  </script>
+
+  <style>
+    body {
+      background-color: #202020;
+    }
+    .title {
+      color: aquamarine;
+    }
+    .danger {
+      color: red;
+    }
+    .warning {
+      color: yellow;
+    }
+    .hobbies {
+      color: white;
+    }
+  </style>
+</Layout>
